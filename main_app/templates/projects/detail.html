@@ -23,6 +23,17 @@
                 <a href="{% url 'project_delete' project.id %}">Delete</a>
             </div>
         </div>
+        {% for photo in project.photo_set.all %}
+            <img src="{{ photo.url }}" alt="{{ project.name }}" class="responsive-img card-panel">
+        {% empty %}
+            <div class="card-panel blue-text center-align">No Photos Uploaded</div>
+        {% endfor %}
+        <!-- Upload photos -->
+        <form action="{% url 'add_photo' project.id %}" method="POST" class="card-panel" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="photo-file">
+            <input type="submit" value="Upload Photo" class="btn blue">
+        </form>
     </div>
      <div class ="col s6">
         <form action="" method="POST">

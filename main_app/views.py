@@ -5,12 +5,14 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Project
+from .models import Project, Photo
 from django.contrib.auth.forms import UserCreationForm
 
 import uuid
 import boto3
 
+S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
+BUCKET = 'yarncat'
 
 
 # Create your views here.
@@ -41,6 +43,20 @@ def signup(request):
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form, 'error': error_message})
+
+def add_photo(request, project_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            Photo.objects.create(url=url, project_id=project_id)
+        except Exception as error:
+            print('An error occurred uploading file to S3: ', error)
+
+    return redirect('projects_detail', project_id=project_id)
 
 class ProjectCreate(LoginRequiredMixin, CreateView):
     model = Project
