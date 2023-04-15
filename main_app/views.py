@@ -45,7 +45,7 @@ def signup(request):
 class ProjectCreate(LoginRequiredMixin, CreateView):
     model = Project
     fields = ('name', 'type', 'tools', 'description')
-    success_url = '/projects/project_form.html'
+    template_name = 'projects/project_form.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
