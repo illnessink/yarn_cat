@@ -50,3 +50,13 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+class ProjectUpdate(LoginRequiredMixin, UpdateView):
+    model = Project
+    fields = ('name', 'type', 'tools', 'description')
+    template_name = 'projects/project_form.html'
+
+class ProjectDelete(LoginRequiredMixin, DeleteView):
+    model = Project
+    success_url = '/projects/'
+    template_name = 'projects/project_confirm_delete.html'
