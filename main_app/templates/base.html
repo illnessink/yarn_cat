@@ -1,0 +1,54 @@
+<!-- NOTE: load static informs the view engine that static assets are needed here -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Yarn Cat</title>
+</head>
+<body>
+    <header class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper red lighten-1">
+                <a class="left brand-logo" href="{% url 'home' %}">Yarn Cat</a>
+                <ul class="right">
+                    <li>
+                        <a href="{% url 'about' %}">About</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'projects_index' %}">View All Projects</a>
+                    </li>
+                    <li>
+                        <a href="">Logout</a>
+                    </li>
+              
+                    <li>
+                        <a href="">Login</a>
+                    </li>
+                    <li>
+                        <a href="">Signup</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="page-footer red lighten-1">
+        <p>Copyright &copy; All Rights Reserved Yarn Cat 2023</p>
+    </footer>
+</body>
+</html>
