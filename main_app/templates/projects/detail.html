@@ -19,8 +19,8 @@
                 <p>Description: {{ project.description }}</p>
             </div> 
             <div class="card-action">
-                <a href="">Update</a>
-                <a href="">Delete</a>
+                <a href="{% url 'project_update' project.id %}">Update</a>
+                <a href="{% url 'project_delete' project.id %}">Delete</a>
             </div>
         </div>
     </div>
