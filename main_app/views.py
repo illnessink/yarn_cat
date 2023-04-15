@@ -41,3 +41,12 @@ def signup(request):
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form, 'error': error_message})
+
+class ProjectCreate(LoginRequiredMixin, CreateView):
+    model = Project
+    fields = ('name', 'type', 'tools', 'description')
+    success_url = '/projects/project_form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
