@@ -6,7 +6,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Project, Photo
+from .forms import TimingForm
 from django.contrib.auth.forms import UserCreationForm
+from datetime import timedelta
 
 import uuid
 import boto3
@@ -29,7 +31,23 @@ def projects_index(request):
 
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
-    return render(request, 'projects/detail.html', {'project': project})
+    timing_form = TimingForm()
+    timings = project.timing_set.all()
+    total_time = sum([t.time_spent for t in timings], timedelta())
+    return render(request, 'projects/detail.html', {
+        'project': project,
+        'timing_form': timing_form,
+        'timings': timings,
+        'total_time': total_time
+        })
+
+def add_timing(request, project_id):
+    form = TimingForm(request.POST)
+    if form.is_valid():
+        new_timing = form.save(commit=False)
+        new_timing.project_id = project_id
+        new_timing.save()
+    return redirect('projects_detail', project_id=project_id)
 
 def signup(request):
     error_message = ''

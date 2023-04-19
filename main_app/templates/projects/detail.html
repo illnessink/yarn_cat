@@ -36,28 +36,43 @@
         </form>
     </div>
      <div class ="col s6">
-        <form action="" method="POST">
+        <h5>Total Time Spent on {{project.name}}: {{total_time}}</h5>
+        <form action="{% url 'add_timing' project.id %}" method="POST">
             {% csrf_token %}
-            {{ feeding_form.as_p }}
+            {{ timing_form.as_p }}
             <input type="submit" value="Add Time" class="btn blue">
         </form>
          <table class="striped">
              <thead>
                  <tr>
                      <th>Date</th>
-                     <th>Meal</th>
+                     <th>Time Spent</th>
                  </tr>
              </thead>
              <tbody>
-                     <tr>
-                         <td>date</td>
-                         <td>time</td>
-                     </tr>
+                {% for timing in project.timing_set.all %}
+                <tr>
+                    <td>{{ timing.date }}</td>
+                    <td>{{ timing.time_spent }}</td>
+                </tr>
+            {% endfor %}
              </tbody>
          </table>
      </div>
  </div>
 
+ <script>
+    const datePickerEl= document.getElementById('id_date');
+    const formSelectEl= document.getElementById('id_meal');
+    
+    M.Datepicker.init(datePickerEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    });
+    M.FormSelect.init(formSelectEl);
+    </script>
 
 
 {% endblock %}
