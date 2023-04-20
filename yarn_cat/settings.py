@@ -82,7 +82,11 @@ WSGI_APPLICATION = 'yarn_cat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'yarn_cat',
+        'NAME': 'nessfoerster/yarn_cat',
+        'USER': os.environ['USER'],
+        'PASSWORD': os.environ['PASSWORD'],
+        'HOST': 'db.bit.io',
+        'PORT': '5432',
     }
 }
 
