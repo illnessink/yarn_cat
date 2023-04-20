@@ -4,9 +4,42 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #B4DfE5;
 }
 
 main {
     flex-grow: 1;
 }
 /* sticky footer recipe  ^ */
+
+.navbar-fixed {
+    background-color: #F4976C;
+}
+
+#footer_nav.page-footer {
+    background-color: #303C6C;
+    text-align: center;
+    height: 50px;
+    padding-top: 15px;
+}
+
+#footer_p {
+    margin: 0;
+}
+
+div.card.small {
+    display:inline-block;
+    overflow: visible;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.card {
+    padding: 5px;
+}
+
+#card_name {
+    padding: 5px;
+    text-align: center;
+}
+
