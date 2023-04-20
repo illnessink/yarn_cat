@@ -33,7 +33,7 @@ def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
     timing_form = TimingForm()
     timings = project.timing_set.all()
-    total_time = sum([t.time_spent for t in timings], timedelta())
+    total_time = project.project_total_time()
     return render(request, 'projects/detail.html', {
         'project': project,
         'timing_form': timing_form,
