@@ -9,18 +9,52 @@
 {% endblock %}
 
 {% block content %}
-{% if object %}
-<h1>Edit {{ object.name }}</h1>
-{% else %}
-<h1>Create a new Project</h1>
-{% endif %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit" class="btn blue">
-</form>
+
+<section class="py-4 py-xl-5">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                <div class="card mb-5">
+                    <div class="card-body p-sm-5">
+                        {% if object %}
+                        <h2 class="text-center mb-4">Edit {{ object.name }}</h2>
+                        {% else %}
+                        <h2 class="text-center mb-4">Add a New Project</h2>
+                        {% endif %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3"><input id="name-1" class="form-control form-control" type="text" name="name" 
+                                {% if object %}
+                                value="{{ object.name }}"
+                                {% else %}
+                                placeholder="Name"
+                                {% endif %}>{{ name }}</div>
+                            <div class="mb-3"><input id="type-1" class="form-control form-control" type="text" name="type" 
+                                {% if object %}
+                                value="{{ object.type }}"
+                                {% else %}
+                                placeholder="Type"
+                                {% endif %}>{{ type }}</div>
+                            <div class="mb-3"><input id="tools-1" class="form-control form-control" type="text" name="tools" 
+                                {% if object %}
+                                value="{{ object.tools }}"
+                                {% else %}
+                                placeholder="Tools"
+                                {% endif %}>{{ tools }}</div>
+                            <div class="mb-3"><textarea id="description-1" class="form-control form-control" name="description" rows="6" 
+                                {% if object %}
+                                placeholder="{{ object.description }}"
+                                {% else %}
+                                placeholder="Description"
+                                {% endif %}>{{ object.description }}</textarea></div>
+                            <div><button class="btn btn-primary d-block w-100" type="submit" style="background: rgb(108,193,204);">Submit</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
