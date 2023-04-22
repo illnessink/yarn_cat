@@ -7,42 +7,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anybody&display=swap">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Yarn Cat</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 <body>
-    <header class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper red accent-1">
-                <a class="left brand-logo" href="{% url 'home' %}">Yarn Cat</a>
-                <ul class="right">
-                    <li>
-                        <a href="{% url 'about' %}">About</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li>
-                        <a href="{% url 'projects_index' %}">View All Projects</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'project_create' %}">Add Project</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'logout' %}">Logout</a>
-                    </li>
+    <header class="">
+        <nav class="navbar navbar-light navbar-expand-md py-3" style="background: #f57640;">
+            <div class="container"><a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}"><span style="font-family: Anybody, serif;font-size: 30px;">Yarn Cat</span></a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div id="navcol-2" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'about' %}" style="font-family: Anybody, serif;">About</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'projects_index' %}" style="font-family: Anybody, serif;">View All Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'project_create' %}" style="font-family: Anybody, serif;">Add a Project</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-primary ms-md-2" role="button" href="{% url 'logout' %}" style="font-family: Anybody, serif;background: rgb(108,193,204);border-style: none;box-shadow: 0px 0px 3px;">Logout</a>
                     {% else %}
-                    <li>
-                        <a href="{% url 'login' %}">Login</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'signup' %}">Signup</a>
-                    </li>
+                    <a class="btn btn-primary ms-md-2" role="button" href="{% url 'login' %}" style="font-family: Anybody, serif;background: rgb(108,193,204);border-style: none;box-shadow: 0px 0px 3px;">Login</a>
+                    <a class="btn btn-primary ms-md-2" role="button" href="{% url 'signup' %}" style="font-family: Anybody, serif;background: rgb(108,193,204);border-style: none;box-shadow: 0px 0px 3px;">Signup</a>
                     {% endif %}
-                </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -55,3 +50,4 @@
     </footer>
 </body>
 </html>
+
