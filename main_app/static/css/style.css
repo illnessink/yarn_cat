@@ -32,7 +32,10 @@ img {
     object-fit: cover;
 }
 
-
+h1.jumbotron-heading {
+    margin-top: 20px;
+    font-family: Anybody, serif;
+}
 
 
 
