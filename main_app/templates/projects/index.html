@@ -5,24 +5,30 @@
 {% endblock %}
 
 {% block content %}
- <h1>All Projects</h1>
 
- <div class="row">
- {% for project in projects %}
-     <div class="col s12 m7 l3 cards-container">
-         <div class="card small">
-                <a href="{% url 'projects_detail' project.id %}">
-                <div class="card-image">
-                    {% if project.photo_set.first.url %}
-                    <img src="{{project.photo_set.first.url}}">
-                    {% else %}
-                    <img src="https://images.pexels.com/photos/1279813/pexels-photo-1279813.jpeg">
-                    {% endif %}
-                </div>
+ <div class="container py-4 py-xl-5">
+    <div class="row mb-5" style>
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2 style="font-family: Epilogue, sans-serif;">Yay - Here are all your projects!</h2>
+            <p style="font-family: Epilogue, sans-serif;">
+                <span style="color: rgb(55, 65, 81); background-color: rgb(247, 247, 248);">Take a peek at what you&#39;ve been working on lately.</span>
+            </p>
+        </div>
+    </div>
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+         {% for project in projects %}
+         <div class="col">
+             <div>
+                 <a href="{% url 'projects_detail' project.id %}">
+                {% if project.photo_set.first.url %}
+                <img class="rounded img-fluid d-block w-100 object-fit-cover" style="height: 200px;" src="{{project.photo_set.first.url}}" />
+                {% else %}
+                <img class="rounded img-fluid d-block w-100 object-fit-cover" style="height: 200px;" src="https://images.pexels.com/photos/1279813/pexels-photo-1279813.jpeg" />
+                {% endif %}
                 </a>
-                <div id="card_name"class="card-content">
-                    <span class="card-title">{{ project.name }}</span>
-                    <p>Type: {{project.type }}</p>
+                <div class="py-4">
+                    <h4>{{ project.name }}</h4>
+                    <p>{{project.type }}</p>
                 </div>
             </div>
         </div>
@@ -31,3 +37,4 @@
 
 
 {% endblock %}
+

@@ -25,21 +25,14 @@ main {
 
 #footer_p {
     margin: 0;
+    color: white;
 }
 
-div.card.small {
-    display:inline-block;
-    overflow: visible;
-    background-color: white;
-    border-radius: 5px;
+img {
+    object-fit: cover;
 }
 
-.card {
-    padding: 5px;
-}
 
-#card_name {
-    padding: 5px;
-    text-align: center;
-}
+
+
 
