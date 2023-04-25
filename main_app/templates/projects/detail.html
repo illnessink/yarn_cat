@@ -33,31 +33,33 @@
         </div>
         <div class="col d-md-flex order-first justify-content-md-start align-items-md-end order-md-1">
             <div style="width: 80%;">
-                <h2 style>{{ project.name }}</h2>
+                <h2 id="detailh1">{{ project.name }}</h2>
                 <p>Type: {{ project.type }}</p>
                 <p>Tools: {{ project.tools }}</p>
                 <p>{{ project.description }}</p>
-            </div>
-            <div class="card-action">
-                <a href="{% url 'project_update' project.id %}">Update</a>
-                <a href="{% url 'project_delete' project.id %}">Delete</a>
+                <a href="{% url 'project_update' project.id %}" class="btn btn-primary ms-md-2" style="font-family: Anybody, serif;background: rgb(108,193,204);border-style: none;box-shadow: 0px 0px 3px;">Update</a>
+                <a href="{% url 'project_delete' project.id %}" class="btn btn-primary ms-md-2" style="font-family: Anybody, serif;background: rgb(164, 38, 22);border-style: none;box-shadow: 0px 0px 3px;">Delete</a>
             </div>
         </div>
         <div class="col order-md-2">
             <form action="{% url 'add_photo' project.id %}" method="POST" class="card-panel" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="file" name="photo-file">
-                <input type="submit" value="Upload Photo" class="btn blue">
+                <input type="submit" value="Upload Photo" class="btn btn-primary ms-md-2" style="font-family: Anybody, serif;background: rgb(108,193,204);border-style: none;box-shadow: 0px 0px 3px;">
             </form>
         </div>
         <div class="col order-md-2">
             <h5>Total Time Spent on {{project.name}}: {{total_time}}</h5>
         <form action="{% url 'add_timing' project.id %}" method="POST">
             {% csrf_token %}
-            {{ timing_form.as_p }}
-            <input type="submit" value="Add Time" class="btn blue">
+            <!-- {{ timing_form.as_p }} -->
+            <div class="mb-3"><input id="type-1" class="form-control form-control" type="text" name="date" 
+                placeholder="Date as YYYY-MM-DD">{{ date }}</div>
+            <div class="mb-3"><input id="type-1" class="form-control form-control" type="text" name="time_spent" 
+                placeholder="Time - in minutes">{{ time_spent }}</div>
+            <input type="submit" value="Add Time" class="btn btn-primary ms-md-2" style="font-family: Anybody, serif;background: rgb(108,193,204);border-style: none;box-shadow: 0px 0px 3px;">
         </form>
-         <table class="striped">
+         <table class="table table-striped">
              <thead>
                  <tr>
                      <th>Date</th>
