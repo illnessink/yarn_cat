@@ -39,7 +39,7 @@ class Photo(models.Model):
     
 
 class Timing(models.Model):
-    date = models.DateField('timing date')
+    date = models.DateField('Date as YYYY-MM-DD')
     time_spent = models.DurationField('time spent - in minutes')
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
