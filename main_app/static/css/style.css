@@ -62,6 +62,10 @@ table.log_table {
     max-width: 500px;
 }
 
+div.card-body {
+    max-width: 386px;
+}
+
 @media (max-width: 767px)
 {
     .photo_button {
