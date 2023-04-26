@@ -136,3 +136,6 @@ LOGOUT_REDIRECT_URL = '/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 YOUTUBE_DATA_API_KEY = os.environ['YOUTUBE_DATA_API_KEY']
+
+import django_heroku
+django_heroku.settings(locals())
