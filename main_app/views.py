@@ -33,7 +33,7 @@ def tutorial_search(request):
             'part': 'snippet',
             'q': request.POST['search'],
             'key' : os.environ.get("YOUTUBE_DATA_API_KEY"),
-            'maxResults': 9,
+            'maxResults': 10,
             'type': 'video',
         }
         video_ids = []
@@ -47,7 +47,7 @@ def tutorial_search(request):
             'part': 'snippet, contentDetails',
             'key' : os.environ.get("YOUTUBE_DATA_API_KEY"),
             'id': ','.join(video_ids),
-            'maxResults': 9,
+            'maxResults': 10,
         }
 
         r = requests.get(video_url, params=video_params)
@@ -57,7 +57,7 @@ def tutorial_search(request):
             video_data = {
                 'title' : result['snippet']['title'],
                 'id' : result['id'],
-                'url': f'https://www.youtube.com/watch?v={ result["id"] }',
+                'url': f'https://www.youtube.com/embed/{ result["id"] }',
                 'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60),
                 'thumbnail' : result['snippet']['thumbnails']['high']['url'],
             }
