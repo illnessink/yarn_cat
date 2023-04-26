@@ -45,7 +45,25 @@ h4 {
     font-family: Anybody, serif;
 }
 
+.detail_img {
+    border-radius: 5px;
+    max-height: 560px;
+}
 
+.carousel {
+    max-width: 800px;
+}
+.img_div {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 767px)
+{
+    .photo_button {
+        margin-top: 15px;
+    }
+}
 
 
 
