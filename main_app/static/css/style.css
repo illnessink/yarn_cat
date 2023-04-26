@@ -32,7 +32,7 @@ img {
     object-fit: cover;
 }
 
-h1.jumbotron-heading {
+h1.jumbotron-heading, #h1_signup {
     margin-top: 20px;
     font-family: Anybody, serif;
 }

@@ -6,7 +6,7 @@
 
 
 {% block content %}
-<h1>Signup</h1>
+<h1 id="h1_signup">Signup</h1>
 
 {% if error %}
 <p class="red-text">{{ error }}</p>
@@ -14,7 +14,9 @@
 
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Signup" class="btn blue">
+    <table class="table">
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Signup" class="btn btn-primary ms-md-2 photo_button" style="font-family: Anybody, serif;background: rgb(108,193,204);border-style: none;box-shadow: 0px 0px 3px;">
 </form>
 {% endblock %}
