@@ -8,10 +8,9 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Project, Photo
+from .models import Project, Photo, Video
 from .forms import TimingForm
 from django.contrib.auth.forms import UserCreationForm
-from datetime import timedelta
 
 import uuid
 import boto3
@@ -22,6 +21,7 @@ BUCKET = 'yarncat'
 
 # Create your views here.
 
+@login_required
 def tutorial_search(request):
     videos = []
 
@@ -38,6 +38,8 @@ def tutorial_search(request):
         }
         video_ids = []
         r = requests.get(search_url, params=search_params)
+        if not r:
+            return render(request, 'tutorials/search.html', {'error': 'No results found. Please try again.'})
         results = r.json()['items']
 
         for result in results:
@@ -54,12 +56,17 @@ def tutorial_search(request):
         results = r.json()['items']
 
         for result in results:
+            if Video.objects.filter(url=f'https://www.youtube.com/embed/{ result["id"] }').exists():
+                favorite = True
+            else:
+                favorite = False
             video_data = {
                 'title' : result['snippet']['title'],
                 'id' : result['id'],
                 'url': f'https://www.youtube.com/embed/{ result["id"] }',
                 'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60),
                 'thumbnail' : result['snippet']['thumbnails']['high']['url'],
+                'favorite': favorite,
             }
 
             videos.append(video_data)
@@ -70,16 +77,43 @@ def tutorial_search(request):
 
     return render(request, 'tutorials/search.html', context)
 
+@login_required
+def add_favorite_video(request, video_id):
+    video = Video.objects.create(
+        favorited_by = request.user,
+        url = f'https://www.youtube.com/embed/{ video_id }',
+    )
+    return redirect('tutorial_search')
+
+@login_required
+def unfavorite_video(request, video_id):
+    video = Video.objects.filter(
+         favorited_by = request.user,
+        id = video_id,
+    ).delete()
+    # video = Video.objects.get(id=video_id)
+    # video.favorited_by.remove(request.user)
+    return redirect('favorite_videos')
+
+@login_required
+def favorite_videos(request):
+    videos = Video.objects.filter(favorited_by=request.user)
+    for video in videos:
+        print(video.id)
+    return render(request, 'tutorials/favorite.html', {'videos': videos})
+
 def home(request):
    return render(request, 'home.html')
 
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def projects_index(request):
     projects = Project.objects.filter(user=request.user)
     return render(request, 'projects/index.html', {'projects': projects})
 
+@login_required
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
     timing_form = TimingForm()
