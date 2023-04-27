@@ -49,13 +49,10 @@ class Timing(models.Model):
     class Meta:
         ordering = ('-date',)
 
-    # def project_total_time(self):
-    #     timings = Timing.objects.filter(project=self.project)
-    #     total_time = sum([t.time_spent for t in timings], timedelta())
-    #     #convert to string
-    #     total_time = str(total_time)
-    #     #split string on colons
-    #     total_time = total_time.split(':')
-    #     #format string for days hours and minutes
-    #     total_time = f"{total_time[0]} days, {total_time[1]} hours, {total_time[2]} minutes"
-    #     return total_time
+
+class Video(models.Model):
+    url = models.URLField()
+    favorited_by = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Video {self.url} favorited by {User}"
