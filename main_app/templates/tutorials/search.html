@@ -27,12 +27,17 @@
             {% for video in videos %}
             <div class="col-md-4 col-xl-5 w-auto">
               <div class="card mb-4 shadow-sm">
-                <iframe width="386" height="200" src="{{ video.url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="386" height="200" src="{{ video.url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="
+                max-width: max-content;"></iframe>
                 <div class="card-body">
-                  <p class="card-text">{{ video.title }}</p>
+                  <p class="card-text" style="max-width: 250px;">{{ video.title }}</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <a type="button" href="" class="btn btn-sm btn-outline-secondary">Add to Favorites</a>
+                        {% if video.favorite == True %}
+                        <p class="p_search">Already Favorited!</p>
+                        {% else %}
+                        <a type="button" href="{% url 'add_favorite_video' video_id=video.id %}" data-video_id="{{ video.id }}" class="btn btn-sm btn-outline-secondary">Add to Favorites</a>
+                        {% endif %}
                     </div>
                     <small class="text-muted">{{ video.duration }} mins</small>
                   </div>
