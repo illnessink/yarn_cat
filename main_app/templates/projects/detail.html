@@ -41,7 +41,7 @@
                 <a href="{% url 'project_delete' project.id %}" class="btn btn-primary ms-md-2" style="font-family: Anybody, serif;background: rgb(164, 38, 22);border-style: none;box-shadow: 0px 0px 3px;">Delete</a>
             </div>
         </div>
-        <div class="col order-md-2">
+        <div class="col order-md-2 add_photos">
             <h5>Add up to 3 photos!</h5>
             <form action="{% url 'add_photo' project.id %}" method="POST" class="card-panel" enctype="multipart/form-data">
                 {% csrf_token %}
