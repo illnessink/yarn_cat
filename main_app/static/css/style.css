@@ -71,10 +71,30 @@ div.row {
 
 @media (max-width: 767px)
 {
-    .photo_button {
-        margin-top: 15px;
+    div.card-body {
+        max-width: 386px;
     }
 }
+
+p.p_search {
+    font-size: 12px;
+    margin-bottom: 0;
+    color: #303C6C;
+}
+
+div.add_photos {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* @media (min-width: 490px)
+{
+    iframe {
+        max-width: 348px;
+    }
+} */
 
 
 
