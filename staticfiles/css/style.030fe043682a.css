@@ -1,0 +1,80 @@
+/* sticky footer recipe  */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #B4DfE5;
+}
+
+main {
+    flex-grow: 1;
+}
+/* sticky footer recipe  ^ */
+
+.navbar-fixed {
+    background-color: #F4976C;
+}
+
+#footer_nav.page-footer {
+    background-color: #303C6C;
+    text-align: center;
+    height: 50px;
+    padding-top: 15px;
+}
+
+#footer_p {
+    margin: 0;
+    color: white;
+}
+
+img {
+    object-fit: cover;
+}
+
+h1.jumbotron-heading, #h1_signup, #h1_login {
+    margin-top: 20px;
+    font-family: Anybody, serif;
+}
+
+h2 {
+    font-family: Anybody, serif;
+}
+
+h4 {
+    font-family: Anybody, serif;
+}
+
+.detail_img {
+    border-radius: 5px;
+    max-height: 560px;
+}
+
+.carousel {
+    max-width: 800px;
+}
+.img_div {
+    display: flex;
+    justify-content: center;
+}
+
+table.log_table {
+    max-width: 500px;
+}
+
+div.card-body {
+    max-width: 386px;
+}
+div.row {
+    justify-content: center;
+}
+
+@media (max-width: 767px)
+{
+    .photo_button {
+        margin-top: 15px;
+    }
+}
+
+
+
