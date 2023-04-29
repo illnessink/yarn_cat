@@ -21,7 +21,9 @@
 <body>
     <header class="">
         <nav class="navbar navbar-light navbar-expand-md py-3" style="background: #f57640;">
-            <div class="container"><a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}"><span style="font-family: Anybody, serif;font-size: 30px;">Yarn Cat</span></a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container">
+                {% load static %} <img src="{% static 'imgs/yarncat.png' %}" alt="Yarn Cat Logo" style="height: 80px;">
+                <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}"><span style="font-family: Anybody, serif;font-size: 40px;">Yarn Cat</span></a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div id="navcol-2" class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
