@@ -5,7 +5,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #B4DfE5;
+    background-image: url('/static/imgs/bgimg.jpg');
 }
+
 
 main {
     flex-grow: 1;
@@ -37,17 +39,35 @@ h1.jumbotron-heading, #h1_signup, #h1_login {
     font-family: Anybody, serif;
 }
 
-h2 {
+h1, h2, h4 {
     font-family: Anybody, serif;
 }
 
-h4 {
-    font-family: Anybody, serif;
+h1.header {
+    margin-top: 20px;
+    text-align: center;
 }
+
+p.center_p {
+    text-align: center;
+    margin-top: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#home {
+    font-size: 50px;
+}
+
 
 .detail_img {
     border-radius: 5px;
     max-height: 560px;
+}
+
+img.add_photo {
+    border-radius: 10px;
 }
 
 .carousel {
