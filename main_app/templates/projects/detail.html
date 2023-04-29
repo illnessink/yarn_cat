@@ -17,7 +17,7 @@
                     </div>
                     {% empty %}
                     <div class="carousel-item active">
-                        <img src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" class="d-block w-100" alt="">
+                        {% load static %} <img src="{% static 'imgs/Addphoto.jpg' %}" class="d-block w-100 add_photo" alt="add photo">
                       </div>
                     {% endfor %}
                 </div>
