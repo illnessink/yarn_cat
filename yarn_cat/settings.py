@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'yarn_cat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nessfoerster/yarn_cat',
+        'NAME': 'postgres',
         'USER': os.environ['USER'],
         'PASSWORD': os.environ['PASSWORD'],
-        'HOST': 'db.bit.io',
+        'HOST': 'db.ccpapkhtrdymmehuzrcq.supabase.co',
         'PORT': '5432',
     }
 }
